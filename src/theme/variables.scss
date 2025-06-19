@@ -1,2 +1,8 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+:root {
+    // Outras variáveis de cor do Ionic...
+  
+    // Variável personalizada para a sombra comum
+    --common-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }

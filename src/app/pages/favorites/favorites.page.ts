@@ -9,10 +9,6 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonThumbnail,
   IonImg,
   IonText,
   IonCard,
@@ -22,7 +18,8 @@ import {
   IonRow,
   IonCol,
   IonButtons,
-  IonBackButton
+  IonBackButton,
+  IonIcon
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -37,10 +34,6 @@ import {
     IonToolbar,
     IonTitle,
     IonContent,
-    IonList,
-    IonItem,
-    IonLabel,
-    IonThumbnail,
     IonImg,
     IonText,
     IonCard,
@@ -50,7 +43,8 @@ import {
     IonRow,
     IonCol,
     IonButtons,
-    IonBackButton
+    IonBackButton,
+    IonIcon
   ]
 })
 export class FavoritesPage implements OnInit {

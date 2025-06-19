@@ -16,9 +16,7 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
-  IonImg,
   IonButtons,
-  IonIcon
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
@@ -43,9 +41,7 @@ import { heart } from 'ionicons/icons';
     IonCard,
     IonCardHeader,
     IonCardTitle,
-    IonImg,
-    IonButtons,
-    IonIcon 
+    IonButtons, 
   ]
 })
 export class PokemonsPage implements OnInit {

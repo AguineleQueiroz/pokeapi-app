@@ -22,7 +22,10 @@ import {
   IonChip,
   IonIcon,
   IonButton,
-  IonListHeader 
+  IonListHeader,
+  IonGrid,
+  IonRow,
+  IonCol
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
@@ -52,7 +55,10 @@ import { heart, heartOutline } from 'ionicons/icons';
     IonChip,
     IonIcon,
     IonButton,
-    IonListHeader
+    IonListHeader,
+    IonGrid,
+    IonRow,
+    IonCol
   ]
 })
 export class PokemonDetailsPage implements OnInit {
