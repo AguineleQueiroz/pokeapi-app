@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PokemonService } from '../../services/pokemon/pokemon.service'; // Seu serviço
 import { RouterModule } from '@angular/router';
 
-// Importe os componentes Ionic específicos que você usará no template
+import { PokemonService } from '../../services/pokemon/pokemon.service';
+
 import {
   IonHeader,
   IonToolbar,
@@ -16,7 +16,13 @@ import {
   IonCard,
   IonCardHeader,
   IonCardTitle,
+  IonImg,
+  IonButtons,
+  IonIcon
 } from '@ionic/angular/standalone';
+
+import { addIcons } from 'ionicons';
+import { heart } from 'ionicons/icons';
 
 @Component({
   selector: 'app-pokemons',
@@ -24,8 +30,8 @@ import {
   styleUrls: ['./pokemons.page.scss'],
   standalone: true,
   imports: [
-    RouterModule,
     CommonModule,
+    RouterModule,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -37,13 +43,18 @@ import {
     IonCard,
     IonCardHeader,
     IonCardTitle,
+    IonImg,
+    IonButtons,
+    IonIcon 
   ]
 })
 export class PokemonsPage implements OnInit {
   pokemons: any[] = [];
-  offset = 0; 
+  offset = 0;
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService) {
+    addIcons({ heart });
+  }
 
   ngOnInit() {
     this.loadPokemons();
@@ -51,14 +62,13 @@ export class PokemonsPage implements OnInit {
 
   loadPokemons() {
     this.pokemonService.getPokemons(this.offset).subscribe({
-      next: (data: string | any[]) => {
-        console.log('Pokémons carregados:', data);
+      next: (data) => {
+        console.log('Pokémons loaded:', data);
         this.pokemons = [...this.pokemons, ...data];
         this.offset += data.length;
       },
-      error: (error: any) => {
-        console.error('Erro ao carregar Pokémons:', error);
-        // Implementar tratamento de erro (ex: exibir mensagem para o usuário)
+      error: (error) => {
+        console.error('Error loading Pokémons:', error);
       }
     });
   }

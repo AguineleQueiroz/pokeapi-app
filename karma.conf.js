@@ -4,6 +4,21 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
+    browsers: ['ChromeHeadless'],
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'Chrome',
+        // Flags para rodar em ambientes como WSL/Docker
+        flags: [
+          '--headless', // executa os testes sem interface gráfica
+          '--disable-gpu', // Desabilita o uso da GPU
+          '--no-sandbox', // Para rodar como root ou em alguns contêineres/WSL
+          '--remote-debugging-port=9222', // Porta para depuração
+          '--disable-web-security'
+        ],
+        executablePath: '/usr/bin/chromium-browser'
+      }
+    },
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
@@ -37,7 +52,6 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true
   });
