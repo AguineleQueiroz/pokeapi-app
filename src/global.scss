@@ -35,3 +35,16 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+ion-header {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px!important;
+}
+  
+ion-card {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px; 
+        transition: box-shadow 0.3s ease-in-out;
+    }
+}
