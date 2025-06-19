@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pokédex</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let pokemon of pokemons">
+        <ion-card [routerLink]="['/pokemon-details', pokemon.id]">
+          <img [src]="pokemon.image" alt="{{ pokemon.name }}">
+          <ion-card-header>
+            <ion-card-title class="ion-text-capitalize">{{ pokemon.name }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button expand="full" (click)="loadPokemons()">Carregar Mais Pokémons</ion-button>
+
+</ion-content>

@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pokemons"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Pokémon</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorite()">
+        <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="pokemonDetails">
+    <ion-card>
+      <ion-img [src]="getPokemonImage(pokemonDetails.id)" alt="{{ pokemonDetails.name }}"></ion-img>
+
+      <ion-card-header>
+        <ion-card-title class="ion-text-capitalize">{{ pokemonDetails.name }}</ion-card-title>
+        <ion-card-subtitle>#{{ pokemonDetails.id }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item *ngIf="pokemonSpecies">
+          <ion-label>
+            <h3>Pokedex Entry (EN):</h3>
+            <p>{{ getFlavorText('en') }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngIf="pokemonSpecies">
+          <ion-label>
+            <h3>Pokedex Entry (PT):</h3>
+            <p>{{ getFlavorText('pt') }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            <h3>Tipos:</h3>
+            <p>
+              <ion-chip *ngFor="let type of pokemonDetails.types" class="ion-text-capitalize">
+                {{ type.type.name }}
+              </ion-chip>
+            </p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            <h3>Habilidades:</h3>
+            <ion-list>
+              <ion-item *ngFor="let ability of pokemonDetails.abilities" class="ion-text-capitalize">
+                {{ ability.ability.name }}
+              </ion-item>
+            </ion-list>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            <h3>Altura:</h3>
+            <p>{{ (pokemonDetails.height * 0.1).toFixed(2) }} m</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h3>Peso:</h3>
+            <p>{{ (pokemonDetails.weight * 0.1).toFixed(2) }} kg</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-list>
+          <ion-list-header>
+            <ion-label>
+              <h3>Sprites Adicionais:</h3>
+            </ion-label>
+          </ion-list-header>
+          <ion-item lines="none">
+            <div class="ion-text-center">
+              <div *ngIf="getSpriteImage(pokemonDetails, 'front_default')">
+                <p>Normal (Frente)</p>
+                <img [src]="getSpriteImage(pokemonDetails, 'front_default')" alt="Front Normal">
+              </div>
+              <div *ngIf="getSpriteImage(pokemonDetails, 'back_default')">
+                <p>Normal (Costas)</p>
+                <img [src]="getSpriteImage(pokemonDetails, 'back_default')" alt="Back Normal">
+              </div>
+              <div *ngIf="getSpriteImage(pokemonDetails, 'front_shiny')">
+                <p>Shiny (Frente)</p>
+                <img [src]="getSpriteImage(pokemonDetails, 'front_shiny')" alt="Front Shiny">
+              </div>
+              <div *ngIf="getSpriteImage(pokemonDetails, 'back_shiny')">
+                <p>Shiny (Costas)</p>
+                <img [src]="getSpriteImage(pokemonDetails, 'back_shiny')" alt="Back Shiny">
+              </div>
+              <div *ngIf="getSpriteImage(pokemonDetails, 'front_female')">
+                <p>Feminino (Frente)</p>
+                <img [src]="getSpriteImage(pokemonDetails, 'front_female')" alt="Front Female">
+              </div>
+              <div *ngIf="getSpriteImage(pokemonDetails, 'back_female')">
+                <p>Feminino (Costas)</p>
+                <img [src]="getSpriteImage(pokemonDetails, 'back_female')" alt="Back Female">
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="!pokemonDetails">
+    <p>Carregando detalhes do Pokémon...</p>
+  </div>
+</ion-content>
