@@ -29,6 +29,7 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-details',
@@ -86,19 +87,17 @@ export class PokemonDetailsPage implements OnInit {
     this.pokemonService.getPokemonDetails(idOrName).subscribe({
       next: (data: any) => {
         this.pokemonDetails = data;
-        console.log('Detalhes do Pokémon:', this.pokemonDetails);
         this.pokemonService.getPokemonSpecies(idOrName).subscribe({
           next: (speciesData: any) => {
             this.pokemonSpecies = speciesData;
-            console.log('Dados da espécie:', this.pokemonSpecies);
           },
           error: (speciesError: any) => {
-            console.error('Erro ao carregar dados da espécie:', speciesError);
+            return throwError(() => new Error(`Não foi possível carregar os dados do pokemon da espécie ${speciesError}. Tente novamente mais tarde`));
           }
         });
       },
       error: (error: any) => {
-        console.error('Erro ao carregar detalhes do Pokémon:', error);
+        return throwError(() => new Error(`Não foi possível carregar os dados do pokemon. Tente novamente mais tarde`));
       }
     });
   }

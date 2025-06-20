@@ -21,6 +21,7 @@ import {
   IonBackButton,
   IonIcon
 } from '@ionic/angular/standalone';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-favorites',
@@ -86,12 +87,12 @@ export class FavoritesPage implements OnInit {
             this.isLoading = false;
           }
         },
-        error: (err) => {
-          console.error(`Erro ao carregar detalhes do Pokémon ${id}:`, err);
+        error: (err) => {         
           loadedCount++;
           if (loadedCount === favoriteIds.length) {
             this.isLoading = false;
           }
+          return throwError(() => new Error(`Não foi possível carregar os dados do pokemon. Tente novamente mais tarde`));
         }
       });
     });

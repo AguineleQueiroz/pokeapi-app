@@ -22,6 +22,7 @@ import {
 
 import { addIcons } from 'ionicons';
 import { heart } from 'ionicons/icons';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-pokemons',
@@ -63,14 +64,13 @@ export class PokemonsPage implements OnInit {
   loadPokemons() {
     this.pokemonService.getPokemons(this.offset).subscribe({
       next: (data) => {
-        console.log('Pokémons loaded:', data);
         this.allPokemons = [...this.allPokemons, ...data];
         this.filteredPokemons = [...this.allPokemons]; 
         this.pokemons = this.filteredPokemons;
         this.offset += data.length;
       },
       error: (error) => {
-        console.error('Error loading Pokémons:', error);
+        return throwError(() => new Error('Um erro inesperado ocorreu ao tentar carregar os pokemons. Tente novamente mais tarde'));
       }
     });
   }
