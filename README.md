@@ -45,7 +45,7 @@ Isso abrirá o aplicativo no seu navegador padrão (geralmente em http://localho
 Este projeto utiliza **Angular Standalone Components**, o que significa que cada componente gerencia suas próprias dependências (`imports`, `providers`). Não há `NgModule` central para a maioria dos componentes.
 
 * **`src/main.ts`**: Ponto de entrada da aplicação, onde o `AppComponent` é "bootstrapped".
-* **`src/app/app.component.ts`**: O componente raiz, responsável pela estrutura global do aplicativo (como o menu lateral e o `ion-router-outlet`).
+* **`src/app/app.component.ts`**: O componente raiz, responsável pela estrutura global do aplicativo.
 * **`src/app/app.routes.ts`**: Define as rotas do aplicativo e as páginas (componentes standalone) associadas a cada rota.
 
 ### Serviços
