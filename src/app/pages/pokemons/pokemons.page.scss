@@ -10,4 +10,7 @@ ion-searchbar {
     --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
     --width: auto !important;
     --border-radius: 50px;
+    &:hover {
+        --box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px !important;
+    }
 }
