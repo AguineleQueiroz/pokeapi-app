@@ -3,3 +3,11 @@ ion-buttons {
         text-transform: capitalize!important
     };
 }
+
+ion-searchbar {
+    max-width: 600px;
+    margin: 0 auto;
+    --box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
+    --width: auto !important;
+    --border-radius: 50px;
+}
