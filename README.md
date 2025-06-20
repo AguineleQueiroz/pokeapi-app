@@ -1,6 +1,10 @@
 # Pokémon App: Seu Guia do Mundo Pokémon!
 
 Este é um aplicativo Ionic/Angular que permite explorar Pokémons, visualizar seus detalhes e gerenciar uma lista de favoritos. O projeto integra consumo de API (PokeAPI), navegação robusta e gerenciamento de estado simples para uma experiência fluída.
+![screen-1](https://github.com/user-attachments/assets/fb361661-8f7c-4ce7-94fe-5bbcdecbb1c4)
+![screen-2](https://github.com/user-attachments/assets/3f4214e7-a500-4d0e-aff5-9e7242e5ddc5)
+![screen-3](https://github.com/user-attachments/assets/256a07a0-d9d7-453b-9362-102226924dbe)
+![screen-4](https://github.com/user-attachments/assets/bcbfe6b1-0b9d-4af7-a039-8b0a46bc7ed6)
 
 ## Como Executar o Projeto
 
