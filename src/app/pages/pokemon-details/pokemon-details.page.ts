@@ -112,7 +112,7 @@ export class PokemonDetailsPage implements OnInit {
     if (this.isFavorite) {
       favorites = favorites.filter((id: string) => id !== this.pokemonId);
     } else {
-      if (this.pokemonId && !favorites.includes(this.pokemonId)) {
+      if (this.pokemonId) {
         favorites.push(this.pokemonId);
       }
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { forkJoin, throwError } from 'rxjs';
 
 import { PokemonService } from '../../services/pokemon/pokemon.service';
 
@@ -19,9 +20,8 @@ import {
   IonCol,
   IonButtons,
   IonBackButton,
-  IonIcon
+  IonIcon,
 } from '@ionic/angular/standalone';
-import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-favorites',
@@ -55,7 +55,6 @@ export class FavoritesPage implements OnInit {
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
-    this.loadFavoritePokemons();
   }
 
   ionViewWillEnter() {
@@ -72,32 +71,24 @@ export class FavoritesPage implements OnInit {
       return;
     }
 
-    const pokemonObservables = favoriteIds.map(id =>
+    const pokemonDetailsObservables = favoriteIds.map(id =>
       this.pokemonService.getPokemonDetails(id)
     );
 
-    let loadedCount = 0;
-    favoriteIds.forEach(id => {
-      this.pokemonService.getPokemonDetails(id).subscribe({
-        next: (pokemon) => {
-          pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
-          this.favoritePokemons.push(pokemon);
-          loadedCount++;
-          if (loadedCount === favoriteIds.length) {
-            this.isLoading = false;
-          }
-        },
-        error: (err) => {         
-          loadedCount++;
-          if (loadedCount === favoriteIds.length) {
-            this.isLoading = false;
-          }
-          return throwError(() => new Error(`Não foi possível carregar os dados do pokemon. Tente novamente mais tarde`));
-        }
-      });
+    forkJoin(pokemonDetailsObservables).subscribe({
+      next: (pokemons: any[]) => {
+        this.favoritePokemons = pokemons.map(pokemon => ({
+          ...pokemon,
+          image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
+        }));
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.isLoading = false;
+        return throwError(() => new Error('Não foi possível carregar alguns dados dos Pokémon favoritos. Tente novamente mais tarde.'));
+      }
     });
   }
-
 
   removeFavorite(pokemonId: string) {
     let favorites: string[] = JSON.parse(localStorage.getItem('favoritePokemons') || '[]');
