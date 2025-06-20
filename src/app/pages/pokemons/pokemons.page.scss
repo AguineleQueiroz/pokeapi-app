@@ -14,3 +14,9 @@ ion-searchbar {
         --box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px !important;
     }
 }
+
+ion-card {
+    &:hover {
+        cursor: pointer;
+    }
+}

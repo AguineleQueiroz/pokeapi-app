@@ -3,3 +3,9 @@
     place-items: center;
     height: 100%;
 }
+
+ion-card {
+    &:hover {
+        cursor: pointer;
+    }
+}
